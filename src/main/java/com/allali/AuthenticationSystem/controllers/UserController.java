@@ -5,6 +5,7 @@ import com.allali.AuthenticationSystem.dtos.Response;
 import com.allali.AuthenticationSystem.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,8 +15,8 @@ public class UserController {
     private final UserService userService ;
 
 
+    @PostMapping("auth/signup")
     public ResponseEntity<Response> signup(@RequestBody Request request){
         return userService.signup(request);
-
     }
 }
