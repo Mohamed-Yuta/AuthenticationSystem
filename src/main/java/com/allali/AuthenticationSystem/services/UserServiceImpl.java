@@ -3,6 +3,7 @@ package com.allali.AuthenticationSystem.services;
 import com.allali.AuthenticationSystem.dtos.LoginRequest;
 import com.allali.AuthenticationSystem.dtos.Request;
 import com.allali.AuthenticationSystem.dtos.Response;
+import com.allali.AuthenticationSystem.dtos.UserInfo;
 import com.allali.AuthenticationSystem.entities.User;
 import com.allali.AuthenticationSystem.repositories.UserRepository;
 import lombok.AllArgsConstructor;
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService {
         return ResponseEntity.ok(Response.builder()
                         .statusCode(200)
                         .responseMessage("SUCCES")
-                        .userInfos(modelMapper.map(savedUser,Request.class))
+                        .userInfos(modelMapper.map(savedUser, UserInfo.class))
                 .build());
     }
 
