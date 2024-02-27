@@ -38,5 +38,6 @@ public class OtpService {
                 .responseMessage("OK")
                 .build();
     }
+    public Response validateOtp()
 
 }
