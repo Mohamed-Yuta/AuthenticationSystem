@@ -21,7 +21,10 @@ public class SecurityConfig {
     }
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authorize->authorize.requestMatchers(HttpMethod.POST,"/auth/signup").permitAll().anyRequest().authenticated());
+                .authorizeHttpRequests(authorize->authorize
+                        .requestMatchers(HttpMethod.POST,"/auth/signup").permitAll().anyRequest().authenticated()
+                        .requestMatchers(HttpMethod.POST,"/api/otp/**").permitAll().anyRequest().authenticated());
+
         return httpSecurity.build();
     }
 
