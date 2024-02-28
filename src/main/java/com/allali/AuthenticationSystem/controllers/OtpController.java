@@ -1,6 +1,7 @@
 package com.allali.AuthenticationSystem.controllers;
 
 import com.allali.AuthenticationSystem.dtos.OtpRequest;
+import com.allali.AuthenticationSystem.dtos.OtpValidationRequest;
 import com.allali.AuthenticationSystem.dtos.Response;
 import com.allali.AuthenticationSystem.services.OtpService;
 import lombok.AllArgsConstructor;
@@ -18,5 +19,10 @@ public class OtpController {
     @PostMapping("sendOtp")
     public Response sendOtp(@RequestBody OtpRequest otpRequest){
         return otpService.sendOtp(otpRequest);
+    }
+
+    @PostMapping("validateOtp")
+    public Response validateOtp(@RequestBody OtpValidationRequest otpValidationRequest){
+        return otpService.validateOtp(otpValidationRequest);
     }
 }
