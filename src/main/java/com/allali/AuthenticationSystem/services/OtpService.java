@@ -1,9 +1,6 @@
 package com.allali.AuthenticationSystem.services;
 
-import com.allali.AuthenticationSystem.dtos.EmailDetails;
-import com.allali.AuthenticationSystem.dtos.OtpRequest;
-import com.allali.AuthenticationSystem.dtos.OtpResponse;
-import com.allali.AuthenticationSystem.dtos.Response;
+import com.allali.AuthenticationSystem.dtos.*;
 import com.allali.AuthenticationSystem.entities.Otp;
 import com.allali.AuthenticationSystem.repositories.OtpRepository;
 import com.allali.AuthenticationSystem.utils.AppUtils;
@@ -38,6 +35,16 @@ public class OtpService {
                 .responseMessage("OK")
                 .build();
     }
-    public Response validateOtp()
+    public Response validateOtp(OtpValidationRequest otpValidationRequest){
+        Otp otp = otpRepository.findByEmail(otpValidationRequest.getEmail());
+        log.info("Email : {}",otpValidationRequest.getEmail());
+        if (otp == null){
+            return Response.builder()
+                    .statusCode(400)
+                    .responseMessage("You Have not sent an Otp").build()
+        }
+        
+
+    }
 
 }
