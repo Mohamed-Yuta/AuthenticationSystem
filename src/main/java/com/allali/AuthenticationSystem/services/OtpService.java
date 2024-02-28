@@ -53,6 +53,13 @@ public class OtpService {
                     .statusCode(400)
                     .responseMessage("Otp incorrect").build();
         }
+        return Response.builder()
+                .statusCode(200)
+                .responseMessage("SUCCES")
+                .otpResponse(OtpResponse.builder()
+                        .isOtpValid(true)
+                        .build())
+                .build();
     }
 
 }

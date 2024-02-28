@@ -16,4 +16,5 @@ public class Response {
     private int statusCode ;
     private String responseMessage ;
     private UserInfo userInfos ;
+    private OtpResponse otpResponse ;
 }
