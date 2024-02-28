@@ -19,6 +19,10 @@ public class OtpService {
 
     public Response sendOtp(OtpRequest otpRequest){
         String otp = AppUtils.generateOtp();
+        Otp existOtp = otpRepository.findByEmail(otpRequest.getEmail());
+        if(existOtp != null ){
+            otpRepository.delete(existOtp);
+        }
         otpRepository.save(Otp.builder()
                         .otp(otp)
                         .email(otpRequest.getEmail())
