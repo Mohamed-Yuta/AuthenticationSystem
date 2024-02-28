@@ -38,13 +38,21 @@ public class OtpService {
     public Response validateOtp(OtpValidationRequest otpValidationRequest){
         Otp otp = otpRepository.findByEmail(otpValidationRequest.getEmail());
         log.info("Email : {}",otpValidationRequest.getEmail());
-        if (otp == null){
+        if(otp == null){
             return Response.builder()
                     .statusCode(400)
-                    .responseMessage("You Have not sent an Otp").build()
+                    .responseMessage("You Have not sent an Otp").build();
         }
-        
-
+        if(otp.getExpiredAt().isBefore(LocalDateTime.now())){
+            return Response.builder()
+                    .statusCode(400)
+                    .responseMessage("Expired Otp").build();
+        }
+        if (!otp.getOtp().equals(otpValidationRequest.getOtp())){
+            return Response.builder()
+                    .statusCode(400)
+                    .responseMessage("Otp incorrect").build();
+        }
     }
 
 }
